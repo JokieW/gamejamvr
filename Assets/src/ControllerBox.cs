@@ -7,28 +7,27 @@ public class ControllerBox : MonoBehaviour
     public GameObject rightArm;
     public GameObject leftArm;
 
-    CompCache<SteamVR_TrackedObject> _rightTracker;
+    public SteamVR_TrackedObject rightTracker;
     HandCollider rightHandCollider;
 
     void Awake()
     {
-        _rightTracker = new CompCache<SteamVR_TrackedObject>(gameObject);
         rightHandCollider = rightArm.AddComponent<HandCollider>();
     }
 
     void Update()
     {
-        if (SteamVR_Controller.Input((int)_rightTracker.get.index).GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || Input.GetKeyDown(KeyCode.K))
+        if (SteamVR_Controller.Input((int)rightTracker.index).GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || Input.GetKeyDown(KeyCode.K))
         {
             ObjectSpawner.SpawnRandom();
         }
         if (rightHandCollider != null && rightHandCollider.CurrentlyTracking != null)
         {
-            if (SteamVR_Controller.Input((int)_rightTracker.get.index).GetPress(SteamVR_Controller.ButtonMask.Grip))
+            if (SteamVR_Controller.Input((int)rightTracker.index).GetPress(SteamVR_Controller.ButtonMask.Grip))
             {
                 rightHandCollider.CurrentlyTracking.transform.SetParent(rightHandCollider.transform);
             }
-            if (SteamVR_Controller.Input((int)_rightTracker.get.index).GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+            if (SteamVR_Controller.Input((int)rightTracker.index).GetPressUp(SteamVR_Controller.ButtonMask.Grip))
             {
                 rightHandCollider.CurrentlyTracking.transform.SetParent(null);
             }
