@@ -5,6 +5,12 @@ using System.Collections;
 public class StickyObject : MonoBehaviour {
 
     public bool Sticked = false;
+    Rigidbody body;
+
+    void Awake()
+    {
+        body = GetComponent<Rigidbody>();
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -16,4 +22,15 @@ public class StickyObject : MonoBehaviour {
         }*/
     }
 
+    void GrabIt(Transform to)
+    {
+        transform.SetParent(to);
+        body.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    void ReleaseIt()
+    {
+        transform.SetParent(null);
+        body.constraints = RigidbodyConstraints.None;
+    }
 }
