@@ -8,11 +8,12 @@ public class ControllerBox : MonoBehaviour
     public GameObject leftArm;
 
     public SteamVR_TrackedObject rightTracker;
-    HandCollider rightHandCollider;
+    public CollisionTracker righthandTracker;
 
     void Awake()
     {
-        rightHandCollider = rightArm.AddComponent<HandCollider>();
+        righthandTracker = rightArm.AddComponent<CollisionTracker>();
+        righthandTracker.typeFilter = typeof(StickyObject);
     }
 
     void Update()
@@ -21,15 +22,15 @@ public class ControllerBox : MonoBehaviour
         {
             ObjectSpawner.SpawnRandom();
         }
-        if (rightHandCollider != null && rightHandCollider.CurrentlyTracking != null)
+        if (righthandTracker != null && righthandTracker.GetFirst() != null)
         {
             if (SteamVR_Controller.Input((int)rightTracker.index).GetPress(SteamVR_Controller.ButtonMask.Grip))
             {
-                rightHandCollider.CurrentlyTracking.GrabIt(rightHandCollider.transform);
+                righthandTracker.GetFirst().stickyObject.GrabIt(righthandTracker.transform);
             }
             if (SteamVR_Controller.Input((int)rightTracker.index).GetPressUp(SteamVR_Controller.ButtonMask.Grip))
             {
-                rightHandCollider.CurrentlyTracking.ReleaseIt();
+                righthandTracker.GetFirst().stickyObject.ReleaseIt();
             }
         }
     }
