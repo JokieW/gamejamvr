@@ -8,7 +8,7 @@ public class HandCollider : MonoBehaviour
 
     void Awake()
     {
-        GetComponent<SphereCollider>().radius = 0.2;
+        GetComponent<SphereCollider>().radius = 0.2f;
     }
 
     void OnCollisionEnter(Collision collision)
