@@ -8,21 +8,23 @@ public class HandCollider : MonoBehaviour
 
     void Awake()
     {
-        GetComponent<SphereCollider>().radius = 0.2f;
+        SphereCollider sc = GetComponent<SphereCollider>();
+        sc.radius = 0.1f;
+        sc.isTrigger = true;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        StickyObject so = collision.gameObject.GetComponent<StickyObject>();
+        StickyObject so = collider.gameObject.GetComponent<StickyObject>();
         if (so != null)
         {
             CurrentlyTracking = so;
         }
     }
 
-    void OnCollisionExit(Collision collision)
+    void OnTriggerExit(Collider collider)
     {
-        StickyObject so = collision.gameObject.GetComponent<StickyObject>();
+        StickyObject so = collider.gameObject.GetComponent<StickyObject>();
         if (so != null && CurrentlyTracking == so)
         {
             CurrentlyTracking = null;
