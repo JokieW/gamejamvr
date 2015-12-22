@@ -5,23 +5,19 @@ public class ObjectSpawner : MonoBehaviour
 {
 
     public GameObject thing;
-    public SteamVR_TrackedObject rightHand;
-    public SteamVR_TrackedObject leftHand;
+    public static ObjectSpawner Instance;
 
-
-	void Update () 
+    void Awake()
     {
-        if (SteamVR_Controller.Input((int)rightHand.index).GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
-        {
-            GameObject.Instantiate(thing, transform.position + RandomVector(2.0f), Quaternion.identity);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            GameObject.Instantiate(thing, transform.position + RandomVector(2.0f), Quaternion.identity);
-        }
-	}
+        Instance = this;
+    }
 
-    public Vector3 RandomVector(float range)
+    public static void SpawnRandom()
+    {
+        GameObject.Instantiate(Instance.thing, Instance.transform.position + RandomVector(2.0f), Quaternion.identity);
+    }
+
+    public static Vector3 RandomVector(float range)
     {
         return new Vector3(Random.Range(-range, range), Random.Range(-range, range), Random.Range(-range, range));
     }
