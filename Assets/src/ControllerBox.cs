@@ -25,11 +25,11 @@ public class ControllerBox : MonoBehaviour
         {
             if (SteamVR_Controller.Input((int)rightTracker.index).GetPress(SteamVR_Controller.ButtonMask.Grip))
             {
-                rightHandCollider.CurrentlyTracking.transform.SetParent(rightHandCollider.transform);
+                rightHandCollider.CurrentlyTracking.GrabIt(rightHandCollider.transform);
             }
             if (SteamVR_Controller.Input((int)rightTracker.index).GetPressUp(SteamVR_Controller.ButtonMask.Grip))
             {
-                rightHandCollider.CurrentlyTracking.transform.SetParent(null);
+                rightHandCollider.CurrentlyTracking.ReleaseIt();
             }
         }
     }

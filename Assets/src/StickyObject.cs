@@ -22,13 +22,13 @@ public class StickyObject : MonoBehaviour {
         }*/
     }
 
-    void GrabIt(Transform to)
+    public void GrabIt(Transform to)
     {
         transform.SetParent(to);
         body.constraints = RigidbodyConstraints.FreezeAll;
     }
 
-    void ReleaseIt()
+    public void ReleaseIt()
     {
         transform.SetParent(null);
         body.constraints = RigidbodyConstraints.None;
