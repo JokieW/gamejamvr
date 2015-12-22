@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 77aac819ef66b84479b85f84e9fe56f9
-timeCreated: 1450821782
+guid: c921ed53f362e4ace93f01485b091f37
+timeCreated: 1450821714
 licenseType: Free
 AudioImporter:
   serializedVersion: 6
@@ -13,7 +13,6 @@ AudioImporter:
     conversionMode: 0
   platformSettingOverrides: {}
   forceToMono: 0
-  normalize: 1
   preloadAudioData: 1
   loadInBackground: 0
   3D: 1
