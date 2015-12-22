@@ -5,6 +5,12 @@ using System.Collections;
 public class HandCollider : MonoBehaviour 
 {
     public StickyObject CurrentlyTracking;
+
+    void Awake()
+    {
+        GetComponent<SphereCollider>().radius = 0.2;
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         StickyObject so = collision.gameObject.GetComponent<StickyObject>();

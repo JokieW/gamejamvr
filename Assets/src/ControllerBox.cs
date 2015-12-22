@@ -12,6 +12,7 @@ public class ControllerBox : MonoBehaviour
 
     void Awake()
     {
+        _rightTracker = new CompCache<SteamVR_TrackedObject>(gameObject);
         rightHandCollider = rightArm.AddComponent<HandCollider>();
     }
 
