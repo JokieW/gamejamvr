@@ -24,6 +24,7 @@ public class CollisionTracker : MonoBehaviour
         {
             SphereCollider sc = gameObject.AddComponent<SphereCollider>();
             sc.isTrigger = trackType == TrackType.Trigger || trackType == TrackType.Both;
+            sc.radius = radius;
         }
     }
 
