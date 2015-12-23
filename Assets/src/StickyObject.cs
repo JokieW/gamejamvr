@@ -18,7 +18,6 @@ public class StickyObject : MonoBehaviour {
 
     void OnJointBreak(float breakForce)
     {
-        Debug.Log("A joint has just been broken!, force: " + breakForce);
         Sticked = false;
         gameObject.layer = 0;
     }
@@ -28,6 +27,7 @@ public class StickyObject : MonoBehaviour {
         if (!Sticked)
         {
             transform.SetParent(to);
+            gameObject.layer = 10;
             body.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
@@ -35,6 +35,7 @@ public class StickyObject : MonoBehaviour {
     public void ReleaseIt()
     {
         transform.SetParent(null);
+        gameObject.layer = 0;
         body.constraints = RigidbodyConstraints.None;
     }
 
@@ -48,10 +49,11 @@ public class StickyObject : MonoBehaviour {
             foreach (Trackable tr in tracks)
             {
                 FixedJoint fj = gameObject.AddComponent<FixedJoint>();
+                Debug.Log(tr.gameObject);
                 fj.connectedBody = tr.gameObject.GetComponent<Rigidbody>();
                 fj.enableCollision = false;
-                fj.breakForce = 10000;
-                fj.breakTorque = 1000;
+                fj.breakForce = 100000;
+                fj.breakTorque = 100000;
             }
             body.constraints = RigidbodyConstraints.None;
             Sticked = true;

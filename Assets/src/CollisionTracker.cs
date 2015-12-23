@@ -47,7 +47,7 @@ public class CollisionTracker : MonoBehaviour
             if (track != null)
             {
                 if ((typeFilter == null || track.GetComponent(typeFilter) != null) ||
-                    (String.IsNullOrEmpty(tagFilter) || track.tag == tagFilter != null))
+                    (String.IsNullOrEmpty(tagFilter) || track.tag == tagFilter))
                 {
                     if (trackAmount == TrackAmount.Many)
                     {
@@ -92,7 +92,8 @@ public class CollisionTracker : MonoBehaviour
             Trackable track = collider.gameObject.GetComponent<Trackable>();
             if (track != null)
             {
-                if (typeFilter == null || track.GetComponent(typeFilter) != null)
+                if ((typeFilter == null || track.GetComponent(typeFilter) != null) ||
+                    (String.IsNullOrEmpty(tagFilter) || track.tag == tagFilter))
                 {
                     if (trackAmount == TrackAmount.Many)
                     {

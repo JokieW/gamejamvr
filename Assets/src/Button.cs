@@ -23,12 +23,12 @@ public class Button : MonoBehaviour
             switch (btype)
             {
                 case ButtonType.ElevatorDown:
-                    movement = Vector3.down * 5.0f * Time.deltaTime;
+                    movement = Vector3.down * 2.0f * Time.deltaTime;
                     elevator.transform.position = elevator.transform.position + movement;
                     break;
 
                 case ButtonType.ElevatorUp:
-                    movement = Vector3.up * 5.0f * Time.deltaTime;
+                    movement = Vector3.up * 2.0f * Time.deltaTime;
                     elevator.transform.position = elevator.transform.position + movement;
                     break;
             }

@@ -10,6 +10,8 @@ public class ControllerBox : MonoBehaviour
     public SteamVR_TrackedObject rightTracker;
     public CollisionTracker righthandTracker;
 
+    Trackable heldObject;
+
     void Awake()
     {
         righthandTracker = rightArm.GetComponent<CollisionTracker>();
@@ -32,18 +34,20 @@ public class ControllerBox : MonoBehaviour
             {
                 ObjectSpawner.SpawnRandom();
             }
-            if (righthandTracker != null && righthandTracker.GetFirst() != null)
+            if (righthandTracker != null && (heldObject != null || righthandTracker.GetFirst() != null))
             {
-                if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+                if (heldObject == null && device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
                 {
-                    righthandTracker.GetFirst().stickyObject.GrabIt(righthandTracker.transform);
+                    heldObject = righthandTracker.GetFirst();
+                    heldObject.stickyObject.GrabIt(righthandTracker.transform);
                 }
-                if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
+                if (heldObject != null && device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
                 {
-                    if (!righthandTracker.GetFirst().stickyObject.TrySnap())
+                    if (!heldObject.stickyObject.TrySnap())
                     {
-                        righthandTracker.GetFirst().stickyObject.ReleaseIt();
+                        heldObject.stickyObject.ReleaseIt();
                     }
+                    heldObject = null;
                 }
                /* if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
                 {
