@@ -44,6 +44,10 @@ public class ControllerBox : MonoBehaviour
                 {
                     righthandTracker.GetFirst().stickyObject.ReleaseIt();
                 }
+                if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+                {
+                    righthandTracker.GetFirst().stickyObject.TrySnap();
+                }
             }
         }
     }
