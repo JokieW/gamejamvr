@@ -28,8 +28,8 @@ public class Button : MonoBehaviour
                     elevator.transform.position = elevator.transform.position + movement;
                     if (!pressed)
                     {
-                        Vector3 t = transform.position;
-                        transform.position = new Vector3(-5.0f, t.y, t.z);
+                        Vector3 t = transform.localPosition;
+                        transform.localPosition = new Vector3(-5.0f, t.y, t.z);
                     }
                     break;
 
@@ -38,8 +38,8 @@ public class Button : MonoBehaviour
                     elevator.transform.position = elevator.transform.position + movement;
                     if (!pressed)
                     {
-                        Vector3 t = transform.position;
-                        transform.position = new Vector3(-5.0f, t.y, t.z);
+                        Vector3 t = transform.localPosition;
+                        transform.localPosition = new Vector3(-5.0f, t.y, t.z);
                     }
                     break;
             }
@@ -48,15 +48,15 @@ public class Button : MonoBehaviour
         }
         else if (pressed)
         {
-            Vector3 t = transform.position;
+            Vector3 t = transform.localPosition;
             switch (btype)
             {
                 case ButtonType.ElevatorDown:
-                    transform.position = new Vector3(-4.81287f, t.y, t.z);
+                    transform.localPosition = new Vector3(-4.81287f, t.y, t.z);
                     break;
 
                 case ButtonType.ElevatorUp:
-                    transform.position = new Vector3(-4.81287f, t.y, t.z);
+                    transform.localPosition = new Vector3(-4.81287f, t.y, t.z);
                     break;
             }
             pressed = false;
