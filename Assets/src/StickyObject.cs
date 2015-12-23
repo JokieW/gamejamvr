@@ -16,20 +16,13 @@ public class StickyObject : MonoBehaviour {
         tracker.typeFilter = typeof(StickyObject);
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        /*if (collision.gameObject.GetComponent<StickyObject>() != null)
-        {
-            FixedJoint fj = gameObject.AddComponent<FixedJoint>();
-            fj.connectedBody = collision.gameObject.GetComponent<Rigidbody>();
-            fj.enableCollision = false;
-        }*/
-    }
-
     public void GrabIt(Transform to)
     {
-        transform.SetParent(to);
-        body.constraints = RigidbodyConstraints.FreezeAll;
+        if (!Sticked)
+        {
+            transform.SetParent(to);
+            body.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
     public void ReleaseIt()
@@ -50,6 +43,7 @@ public class StickyObject : MonoBehaviour {
                 fj.connectedBody = tr.gameObject.GetComponent<Rigidbody>();
                 fj.enableCollision = false;
             }
+            Sticked = true;
         }
     }
 }

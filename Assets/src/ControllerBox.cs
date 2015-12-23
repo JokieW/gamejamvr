@@ -20,17 +20,15 @@ public class ControllerBox : MonoBehaviour
     {
         int rightIndex = (int)rightTracker.index;
 
-        if (rightIndex == -1)
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                ObjectSpawner.SpawnRandom();
-            }
+            ObjectSpawner.SpawnRandom();
         }
-        else
+
+        if (rightIndex != -1)
         {
             SteamVR_Controller.Device device = SteamVR_Controller.Input(rightIndex);
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || Input.GetKeyDown(KeyCode.K))
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
             {
                 ObjectSpawner.SpawnRandom();
             }

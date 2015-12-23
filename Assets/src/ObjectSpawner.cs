@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ObjectSpawner : MonoBehaviour 
 {
 
-    public GameObject thing;
+    public List<GameObject> things;
     public static ObjectSpawner Instance;
 
     void Awake()
@@ -14,7 +15,7 @@ public class ObjectSpawner : MonoBehaviour
 
     public static void SpawnRandom()
     {
-        GameObject.Instantiate(Instance.thing, Instance.transform.position + RandomVector(2.0f), Quaternion.identity);
+        GameObject.Instantiate(Instance.things[Random.Range(0, Instance.things.Count)], Instance.transform.position + RandomVector(2.0f), Quaternion.identity);
     }
 
     public static Vector3 RandomVector(float range)

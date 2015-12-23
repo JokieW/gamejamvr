@@ -15,25 +15,15 @@ public class CollisionTracker : MonoBehaviour
     List<Trackable> _tracked = new List<Trackable>();
 
     Rigidbody body;
-    SphereCollider colliderTrigger;
-    SphereCollider colliderCollision;
 
     void Awake()
     {
         body = GetComponent<Rigidbody>();
-        SphereCollider[] scs = GetComponents<SphereCollider>();
-        if (trackType == TrackType.Trigger || trackType == TrackType.Both)
-        {
-            colliderTrigger = gameObject.AddComponent<SphereCollider>();
-            colliderTrigger.isTrigger = true;
-            colliderTrigger.radius = radius;
-        }
 
-        if (trackType == TrackType.Collision || trackType == TrackType.Both)
+        if (radius != 0)
         {
-            colliderCollision = gameObject.AddComponent<SphereCollider>();
-            colliderCollision.isTrigger = false;
-            colliderCollision.radius = radius;
+            SphereCollider sc = gameObject.AddComponent<SphereCollider>();
+            sc.isTrigger = trackType == TrackType.Trigger || trackType == TrackType.Both;
         }
     }
 
