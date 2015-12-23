@@ -34,6 +34,7 @@ public class StickyObject : MonoBehaviour {
 
     public void ReleaseIt()
     {
+        //transform.parent.GetComponent<Rigidbody>();
         transform.SetParent(null);
         gameObject.layer = 0;
         body.constraints = RigidbodyConstraints.None;
