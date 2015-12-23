@@ -6,6 +6,7 @@ public class Button : MonoBehaviour
 {
     public GameObject elevator;
     public ButtonType btype;
+    bool pressed;
 
     CollisionTracker tracker;
 
@@ -15,7 +16,7 @@ public class Button : MonoBehaviour
         tracker.tagFilter = "Hand";
     }
 
-	void Update () 
+	void Update ()
     {
         if (tracker.GetFirst() != null)
         {
@@ -25,13 +26,40 @@ public class Button : MonoBehaviour
                 case ButtonType.ElevatorDown:
                     movement = Vector3.down * 2.0f * Time.deltaTime;
                     elevator.transform.position = elevator.transform.position + movement;
+                    if (!pressed)
+                    {
+                        Vector3 t = transform.position;
+                        transform.position = new Vector3(-5.0f, t.y, t.z);
+                    }
                     break;
 
                 case ButtonType.ElevatorUp:
                     movement = Vector3.up * 2.0f * Time.deltaTime;
                     elevator.transform.position = elevator.transform.position + movement;
+                    if (!pressed)
+                    {
+                        Vector3 t = transform.position;
+                        transform.position = new Vector3(-5.0f, t.y, t.z);
+                    }
                     break;
             }
+
+            
+        }
+        else if (pressed)
+        {
+            Vector3 t = transform.position;
+            switch (btype)
+            {
+                case ButtonType.ElevatorDown:
+                    transform.position = new Vector3(-4.81287f, t.y, t.z);
+                    break;
+
+                case ButtonType.ElevatorUp:
+                    transform.position = new Vector3(-4.81287f, t.y, t.z);
+                    break;
+            }
+            pressed = false;
         }
 	}
 
