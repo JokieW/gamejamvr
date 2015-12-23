@@ -12,25 +12,38 @@ public class ControllerBox : MonoBehaviour
 
     void Awake()
     {
-        righthandTracker = rightArm.AddComponent<CollisionTracker>();
+        righthandTracker = rightArm.GetComponent<CollisionTracker>();
         righthandTracker.typeFilter = typeof(StickyObject);
     }
 
     void Update()
     {
-        if (SteamVR_Controller.Input((int)rightTracker.index).GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || Input.GetKeyDown(KeyCode.K))
+        int rightIndex = (int)rightTracker.index;
+
+        if (rightIndex == -1)
         {
-            ObjectSpawner.SpawnRandom();
-        }
-        if (righthandTracker != null && righthandTracker.GetFirst() != null)
-        {
-            if (SteamVR_Controller.Input((int)rightTracker.index).GetPress(SteamVR_Controller.ButtonMask.Grip))
+            if (Input.GetKeyDown(KeyCode.K))
             {
-                righthandTracker.GetFirst().stickyObject.GrabIt(righthandTracker.transform);
+                ObjectSpawner.SpawnRandom();
             }
-            if (SteamVR_Controller.Input((int)rightTracker.index).GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+        }
+        else
+        {
+            SteamVR_Controller.Device device = SteamVR_Controller.Input(rightIndex);
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || Input.GetKeyDown(KeyCode.K))
             {
-                righthandTracker.GetFirst().stickyObject.ReleaseIt();
+                ObjectSpawner.SpawnRandom();
+            }
+            if (righthandTracker != null && righthandTracker.GetFirst() != null)
+            {
+                if (device.GetPress(SteamVR_Controller.ButtonMask.Grip))
+                {
+                    righthandTracker.GetFirst().stickyObject.GrabIt(righthandTracker.transform);
+                }
+                if (device.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+                {
+                    righthandTracker.GetFirst().stickyObject.ReleaseIt();
+                }
             }
         }
     }

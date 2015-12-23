@@ -22,13 +22,19 @@ public class CollisionTracker : MonoBehaviour
     {
         body = GetComponent<Rigidbody>();
         SphereCollider[] scs = GetComponents<SphereCollider>();
-        colliderTrigger = gameObject.AddComponent<SphereCollider>();
-        colliderTrigger.isTrigger = true;
-        colliderTrigger.radius = radius;
+        if (trackType == TrackType.Trigger || trackType == TrackType.Both)
+        {
+            colliderTrigger = gameObject.AddComponent<SphereCollider>();
+            colliderTrigger.isTrigger = true;
+            colliderTrigger.radius = radius;
+        }
 
-        colliderCollision = gameObject.AddComponent<SphereCollider>();
-        colliderCollision.isTrigger = false;
-        colliderCollision.radius = radius;
+        if (trackType == TrackType.Collision || trackType == TrackType.Both)
+        {
+            colliderCollision = gameObject.AddComponent<SphereCollider>();
+            colliderCollision.isTrigger = false;
+            colliderCollision.radius = radius;
+        }
     }
 
     public Trackable GetFirst()
