@@ -46,8 +46,20 @@ public class CollisionTracker : MonoBehaviour
             Trackable track = collision.gameObject.GetComponent<Trackable>();
             if (track != null)
             {
-                if ((typeFilter == null || track.GetComponent(typeFilter) != null) ||
-                    (String.IsNullOrEmpty(tagFilter) || track.tag == tagFilter))
+                bool good = false;
+                if (typeFilter != null)
+                {
+                    good = track.GetComponent(typeFilter) != null;
+                }
+                else if (!String.IsNullOrEmpty(tagFilter))
+                {
+                    good = track.tag == tagFilter;
+                }
+                else
+                {
+                    good = true;
+                }
+                if (good)
                 {
                     if (trackAmount == TrackAmount.Many)
                     {
@@ -92,8 +104,20 @@ public class CollisionTracker : MonoBehaviour
             Trackable track = collider.gameObject.GetComponent<Trackable>();
             if (track != null)
             {
-                if ((typeFilter == null || track.GetComponent(typeFilter) != null) ||
-                    (String.IsNullOrEmpty(tagFilter) || track.tag == tagFilter))
+                bool good = false;
+                if (typeFilter != null)
+                {
+                    good = track.GetComponent(typeFilter) != null;
+                }
+                else if (!String.IsNullOrEmpty(tagFilter))
+                {
+                    good = track.tag == tagFilter;
+                }
+                else
+                {
+                    good = true;
+                }
+                if (good)
                 {
                     if (trackAmount == TrackAmount.Many)
                     {

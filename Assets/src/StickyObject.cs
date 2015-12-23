@@ -48,7 +48,6 @@ public class StickyObject : MonoBehaviour {
             gameObject.layer = 8;
             foreach (Trackable tr in tracks)
             {
-                Debug.Log("Snapping " + name + " to " + tr.gameObject.name);
                 FixedJoint fj = gameObject.AddComponent<FixedJoint>();
                 Debug.Log(tr.gameObject);
                 fj.connectedBody = tr.gameObject.GetComponent<Rigidbody>();
