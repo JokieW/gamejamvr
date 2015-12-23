@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(Rigidbody))]
 public class CollisionTracker : MonoBehaviour 
 {
     public TrackAmount trackAmount = TrackAmount.One;
@@ -11,14 +10,12 @@ public class CollisionTracker : MonoBehaviour
     public float radius;
 
     public Type typeFilter;
+    public string tagFilter;
 
     List<Trackable> _tracked = new List<Trackable>();
 
-    Rigidbody body;
-
     void Awake()
     {
-        body = GetComponent<Rigidbody>();
 
         if (radius != 0)
         {
@@ -49,7 +46,8 @@ public class CollisionTracker : MonoBehaviour
             Trackable track = collision.gameObject.GetComponent<Trackable>();
             if (track != null)
             {
-                if (typeFilter == null || track.GetComponent(typeFilter) != null)
+                if ((typeFilter == null || track.GetComponent(typeFilter) != null) ||
+                    (String.IsNullOrEmpty(tagFilter) || track.tag == tagFilter != null))
                 {
                     if (trackAmount == TrackAmount.Many)
                     {
