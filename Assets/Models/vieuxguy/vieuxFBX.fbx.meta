@@ -25,6 +25,7 @@ ModelImporter:
     100034: instance_8
     100036: instance_9
     100038: //RootNode
+    100040: instance_19
     400000: instance_0
     400002: instance_1
     400004: instance_10
@@ -45,6 +46,7 @@ ModelImporter:
     400034: instance_8
     400036: instance_9
     400038: //RootNode
+    400040: instance_19
     2300000: instance_1
     2300002: instance_10
     2300004: instance_11
@@ -62,6 +64,8 @@ ModelImporter:
     2300028: instance_6
     2300030: instance_7
     2300032: instance_8
+    2300034: instance_19
+    2300036: instance_9
     3300000: instance_1
     3300002: instance_10
     3300004: instance_11
@@ -79,6 +83,8 @@ ModelImporter:
     3300028: instance_6
     3300030: instance_7
     3300032: instance_8
+    3300034: instance_19
+    3300036: instance_9
     4300000: instance_18
     4300002: instance_17
     4300004: instance_16
@@ -96,10 +102,12 @@ ModelImporter:
     4300028: instance_4
     4300030: instance_3
     4300032: instance_2
+    4300034: instance_19
+    4300036: instance_9
   materials:
     importMaterials: 1
     materialName: 0
-    materialSearch: 1
+    materialSearch: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
