@@ -31,7 +31,7 @@ public class StickyObject : MonoBehaviour {
         body.constraints = RigidbodyConstraints.None;
     }
 
-    public void TrySnap()
+    public bool TrySnap()
     {
         List<Trackable> tracks = tracker.GetAll();
         if (tracks.Count > 0)
@@ -42,8 +42,11 @@ public class StickyObject : MonoBehaviour {
                 FixedJoint fj = gameObject.AddComponent<FixedJoint>();
                 fj.connectedBody = tr.gameObject.GetComponent<Rigidbody>();
                 fj.enableCollision = false;
+                fj.breakForce = 1000;
             }
             Sticked = true;
+            return true;
         }
+        return false;
     }
 }
