@@ -28,8 +28,10 @@ public class Button : MonoBehaviour
                     elevator.transform.position = elevator.transform.position + movement;
                     if (!pressed)
                     {
-                        Vector3 t = transform.localPosition;
-                        transform.localPosition = new Vector3(-5.0f, t.y, t.z);
+                        Transform child = transform.GetChild(0);
+                        Vector3 t = child.transform.localPosition;
+                        child.transform.localPosition = new Vector3(-0.2f, t.y, t.z);
+                        pressed = true;
                     }
                     break;
 
@@ -38,8 +40,10 @@ public class Button : MonoBehaviour
                     elevator.transform.position = elevator.transform.position + movement;
                     if (!pressed)
                     {
-                        Vector3 t = transform.localPosition;
-                        transform.localPosition = new Vector3(-5.0f, t.y, t.z);
+                        Transform child = transform.GetChild(0);
+                        Vector3 t = child.transform.localPosition;
+                        child.transform.localPosition = new Vector3(-0.2f, t.y, t.z);
+                        pressed = true;
                     }
                     break;
             }
@@ -48,15 +52,16 @@ public class Button : MonoBehaviour
         }
         else if (pressed)
         {
-            Vector3 t = transform.localPosition;
+            Transform child = transform.GetChild(0);
+            Vector3 t = child.transform.localPosition;
             switch (btype)
             {
                 case ButtonType.ElevatorDown:
-                    transform.localPosition = new Vector3(-4.81287f, t.y, t.z);
+                    child.transform.localPosition = new Vector3(0.0f, t.y, t.z);
                     break;
 
                 case ButtonType.ElevatorUp:
-                    transform.localPosition = new Vector3(-4.81287f, t.y, t.z);
+                    child.transform.localPosition = new Vector3(0.0f, t.y, t.z);
                     break;
             }
             pressed = false;
