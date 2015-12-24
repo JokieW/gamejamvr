@@ -3,13 +3,14 @@ using System.Collections;
 
 public class SoundOnCollision : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    AudioSource clip;
+    bool played = false;
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (!played)
+        {
+            clip.Play();
+        }
+    }
 }
