@@ -45,7 +45,7 @@ public class ControllerBox : MonoBehaviour
                 {
                     if (!heldObject.stickyObject.TrySnap())
                     {
-                        heldObject.stickyObject.ReleaseIt();
+                        heldObject.stickyObject.ReleaseIt(device.velocity);
                     }
                     heldObject = null;
                 }

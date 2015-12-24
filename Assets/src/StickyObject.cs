@@ -32,11 +32,10 @@ public class StickyObject : MonoBehaviour {
         }
     }
 
-    public void ReleaseIt()
+    public void ReleaseIt(Vector3 velocity)
     {
-        Vector3 vel = transform.parent.GetComponent<Rigidbody>().velocity;
         transform.SetParent(null);
-        body.velocity = vel;
+        body.velocity = velocity * 2.0f;
         gameObject.layer = 0;
         body.constraints = RigidbodyConstraints.None;
     }
