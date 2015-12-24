@@ -24,26 +24,35 @@ public class Button : MonoBehaviour
             switch (btype)
             {
                 case ButtonType.ElevatorDown:
-                    movement = Vector3.down * 2.0f * Time.deltaTime;
-                    elevator.transform.position = elevator.transform.position + movement;
-                    if (!pressed)
+                    if (Limiter.unblocked)
                     {
-                        Transform child = transform.GetChild(0);
-                        Vector3 t = child.transform.localPosition;
-                        child.transform.localPosition = new Vector3(-0.2f, t.y, t.z);
-                        pressed = true;
+                        movement = Vector3.down * 2.0f * Time.deltaTime;
+                        if ((elevator.transform.position + movement).y >= 0.0)
+                        {
+                            elevator.transform.position = elevator.transform.position + movement;
+                            if (!pressed)
+                            {
+                                Transform child = transform.GetChild(0);
+                                Vector3 t = child.transform.localPosition;
+                                child.transform.localPosition = new Vector3(-0.2f, t.y, t.z);
+                                pressed = true;
+                            }
+                        }
                     }
                     break;
 
                 case ButtonType.ElevatorUp:
-                    movement = Vector3.up * 2.0f * Time.deltaTime;
-                    elevator.transform.position = elevator.transform.position + movement;
-                    if (!pressed)
+                    if (Limiter.unblocked)
                     {
-                        Transform child = transform.GetChild(0);
-                        Vector3 t = child.transform.localPosition;
-                        child.transform.localPosition = new Vector3(-0.2f, t.y, t.z);
-                        pressed = true;
+                        movement = Vector3.up * 2.0f * Time.deltaTime;
+                        elevator.transform.position = elevator.transform.position + movement;
+                        if (!pressed)
+                        {
+                            Transform child = transform.GetChild(0);
+                            Vector3 t = child.transform.localPosition;
+                            child.transform.localPosition = new Vector3(-0.2f, t.y, t.z);
+                            pressed = true;
+                        }
                     }
                     break;
             }
