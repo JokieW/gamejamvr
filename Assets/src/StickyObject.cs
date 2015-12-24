@@ -35,9 +35,10 @@ public class StickyObject : MonoBehaviour {
     public void ReleaseIt(Vector3 velocity)
     {
         transform.SetParent(null);
-        body.velocity = velocity * 2.0f;
+        
         gameObject.layer = 0;
         body.constraints = RigidbodyConstraints.None;
+        body.velocity = velocity * 2.0f;
     }
 
     public bool TrySnap()
