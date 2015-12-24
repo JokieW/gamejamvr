@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SoundOnCollision : MonoBehaviour {
 
-    AudioSource clip;
+    public AudioSource clip;
     bool played = false;
 
     void OnTriggerEnter(Collider collider)
@@ -11,6 +11,7 @@ public class SoundOnCollision : MonoBehaviour {
         if (!played)
         {
             clip.Play();
+            played = true;
         }
     }
 }
