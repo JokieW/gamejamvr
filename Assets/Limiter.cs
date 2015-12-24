@@ -7,7 +7,7 @@ public class Limiter : MonoBehaviour
 
 	void Update () 
     {
-        if (!unblocked && Time.time > 130.0f)
+        if (!unblocked && Time.time > 110.0f)
         {
             unblocked = true;
             Debug.Log("Unblocked");
