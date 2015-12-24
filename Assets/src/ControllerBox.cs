@@ -30,7 +30,7 @@ public class ControllerBox : MonoBehaviour
         if (rightIndex != -1 && Limiter.unblocked)
         {
             SteamVR_Controller.Device device = SteamVR_Controller.Input(rightIndex);
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
             {
                 ObjectSpawner.SpawnRandom();
             }

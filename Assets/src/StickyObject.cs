@@ -8,6 +8,7 @@ public class StickyObject : MonoBehaviour {
     public bool Sticked = false;
     Rigidbody body;
     CollisionTracker tracker;
+    public static int StickiedCount;
 
     void Start()
     {
@@ -59,6 +60,7 @@ public class StickyObject : MonoBehaviour {
             }
             body.constraints = RigidbodyConstraints.None;
             Sticked = true;
+            StickiedCount++;
             return true;
         }
         return false;
