@@ -9,7 +9,7 @@ public class StickyObject : MonoBehaviour {
     Rigidbody body;
     CollisionTracker tracker;
 
-    void Awake()
+    void Start()
     {
         body = GetComponent<Rigidbody>();
         tracker = GetComponent<CollisionTracker>();
